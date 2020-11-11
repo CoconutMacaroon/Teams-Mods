@@ -30,11 +30,11 @@ Note: You _might_ be able to do this without being in Developer Mode, by simply 
 
 ### Printing everyone in the meeting
 
-In the JavaScript console, run this: `for(const item of Array.from(document.getElementsByTagName('li'))){console.log(item.children[1].innerText);}`. It will print out each name.
+In the JavaScript console, run this: `for(const item of Array.from(document.getElementsByTagName('li'))){console.log(item.children[1].innerText.split("\n")[0]);}`. It will print out each name.
 
 ### But I don't want to print it, I want an array
 
-As an array, use this: `var a = []; for(const item of Array.from(document.getElementsByTagName('li'))){a.push(item.children[1].innerText);}`. The names will be stored in the array `a`.
+As an array, use this: `var a = []; for(const item of Array.from(document.getElementsByTagName('li'))){a.push(item.children[1].innerText.split("\n")[0]);}`. The names will be stored in the array `a`.
 
 ## I want to undo my changes/go back to the normal um-modified Teams
 
