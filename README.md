@@ -40,10 +40,21 @@ As an array, use this: `var a = []; for(const item of Array.from(document.getEle
 
 Go into the tray (the Teams icon), right click it, and click `Quit`. Then re-open Teams. Your changes will be gone. Note that this applies to changes to the HTML only (this is the only kind of change explained in this Gist), but if you modify the actually install, this (probably) won't work.
 
+## See who has their hand up
+
+### As an array
+
+This stores who has their hand up into an array (note that this does not include their name): `var b = []; for(const c of document.getElementsByTagName('li')) {b.push(c.children[2].children[0].children[0].children[0].getAttribute("aria-label").localeCompare("Hand Raised") == 0)}`
+
+### With names
+
+Or, if you also want to know _who_ has their hand up, we can get who is in the meeting, and combine that with who has their hand up. Like this: `var a = []; for(const item of Array.from(document.getElementsByTagName('li'))){a.push(item.children[1].innerText.split("\n")[0]);}var b = []; for(const c of document.getElementsByTagName('li')) {b.push(c.children[2].children[0].children[0].children[0].getAttribute("aria-label").localeCompare("Hand Raised") == 0)}for(var i = 0; i < a.length; i++) {console.log(a[i] + (b[i] == true ? " has their hand up" : "doesn't have their hand up"));}`. This is kind of complex, but what it does is it looks at who is in the meeting, and who has their hand up, and then prints the two lists like this: "Person has their hand up".
+
 ## References
 - [(How) can I open the dev tools in the Microsoft Teams desktop client?](https://stackoverflow.com/a/59403509)
 - [how to iterate on HTMLCollection?](https://stackoverflow.com/a/4995628)
 
 ## TODO:
 > These are things that I hope to add
-- [ ] Detect when someone has raised their hand
+- [x] Detect who has their hand up
+- [ ] Send a notification when someone raises their hand
