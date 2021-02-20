@@ -18,7 +18,7 @@ This one is pretty simple. Note that when you make the web request, you might ha
 
 Make a `PUT` request to `https://presence.teams.microsoft.com/v1/me/forceavailability/`. The authorization should be `BEARER <YOUR AUTH TOKEN HERE>`. The content type should be `application/json`.
 
-A PowerShell samples is
+A PowerShell sample is
 ```PowerShell
 $data = @{
     availability = "Busy"
