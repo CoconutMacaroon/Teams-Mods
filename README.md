@@ -16,7 +16,7 @@ For each API example, I explain the web request paramaters, and an example of us
 
 This one is pretty simple. Note that when you make the web request, you might have to close/reopen Teams to see teh change. This is because Teams isn't constantly checking for a status change. However, the status is still set _even if you don't see it in Teams_.
 
-Make a `PUT` request to `https://presence.teams.microsoft.com/v1/me/forceavailability/`. The authorization should be `BEARER <YOUR AUTH TOKEN HERE>`. The content type should be `application/json`.
+Make a `PUT` request to `https://presence.teams.microsoft.com/v1/me/forceavailability/`. The authorization should be `BEARER <YOUR AUTH TOKEN HERE>`. The content type should be `application/json`. Have the body of the request have `availability = "<STATUS>"`. `STATUS` can be `Busy` or `Available`. I haven't figured out the `STATUS` for Do Not Disturb, Be Right Back, Appear away, Appear offline.
 
 A PowerShell sample is
 ```PowerShell
@@ -26,5 +26,7 @@ $data = @{
 
 Invoke-WebRequest https://presence.teams.microsoft.com/v1/me/forceavailability/ -Method PUT -Headers @{Authorization = "Bearer <YOUR AUTH TOKEN HERE"} -Body $data -ContentType "application/json"
 ```
+
+I
 
 To find your Bearer/auth token, open the Teams developer tools, go to the Network tab, and set your status to something that it isn't already (e.g. Busy). There will be a request called `forceavailability`. Click on it, and go to the Headers tab (for that request). There will be a property called `authorization`, with a token that looks like `Bearer` and a ton of random letters. This is your authorization token. A sample Authorization for the request header is `Bearer XXXX`, where `XXXX` is your token. Double check that it is `Bearer XXXX` not `Bearer Bearer XXXX`, or else your request will fail.
