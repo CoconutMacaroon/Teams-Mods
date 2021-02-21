@@ -27,6 +27,18 @@ $data = @{
 Invoke-WebRequest https://presence.teams.microsoft.com/v1/me/forceavailability/ -Method PUT -Headers @{Authorization = "Bearer <YOUR AUTH TOKEN HERE"} -Body $data -ContentType "application/json"
 ```
 
-I
-
 To find your Bearer/auth token, open the Teams developer tools, go to the Network tab, and set your status to something that it isn't already (e.g. Busy). There will be a request called `forceavailability`. Click on it, and go to the Headers tab (for that request). There will be a property called `authorization`, with a token that looks like `Bearer` and a ton of random letters. This is your authorization token. A sample Authorization for the request header is `Bearer XXXX`, where `XXXX` is your token. Double check that it is `Bearer XXXX` not `Bearer Bearer XXXX`, or else your request will fail.
+
+### Setting your Teams status message
+
+Make a `PUT` request to `https://presence.teams.microsoft.com/v1/me/publishnote`. Use the same authorization sceme as for setting your status (`BEARER <YOUR AUTH TOKEN HERE>`). Again, to find your auth token, use the method described in the last section. The body of the request should have a `message` of whatever your status should be (e.g. `"This is a sample status message"`), and an `expiry` of `"9999-12-31T08:00:00.000Z"` to make the message permenent (until you change it to something else).
+
+A PowerShell example is
+```PowerShell
+$data = @{
+    message = "This is a sample status message"
+    expiry = "9999-12-31T08:00:00.000Z"
+} | ConvertTo-Json
+
+Invoke-WebRequest https://presence.teams.microsoft.com/v1/me/publishnote -Method PUT -Headers @{Authorization = "Bearer <YOUR AUTH TOKEN HERE>"} -Body $data -ContentType "application/json"
+```
