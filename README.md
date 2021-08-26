@@ -1,5 +1,7 @@
 # A guide to modifing Microsoft Teams
 
+> IMPORTANT: This is based on the version of Teams that uses Electron. This is NOT for the new (Windows 11) version of Teams.
+
 **Note: The Wiki contains the original Guide. The guide in the Wiki documents modifiyng Teams via JS using the Developer tools. However, I have wanted to experiment with the (web) API that Teams uses for server-based stuff (e.g. setting your status). The web API stuff is in the readme file. I am (mostly) focusing on the web API, but feel free to ask me questions about either one in the Issues tab.**
 
 First, a little background on what this is. It is a guide to what I have figured out in Microsoft Teams. I wanted to do (a) control the Teams app with JS and (b) use the Teams web API. I was able to open the developer tools, but I was unable to find any useful reference on the internal HTML/API or how it works. In the Wiki, I attempt to document everything I have figured out how to do _only using the JavaScript console in the DevTools_. This is _not_ a reference guide or documentation, but it does contain what I have figured out how to do. This repo is meant as a cookbook, of (hopefully) useful things you can do. All of these experiments assume you are in the JavaScript console within DevTools. So read Opening DevTools before you try these. The stuff on the web API is here in the readme.
